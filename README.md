@@ -1,1 +1,3 @@
-# sequencer
+# Sequencer
+
+Simple JS step sequencer 

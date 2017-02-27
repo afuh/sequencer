@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css?family=Fjalla+One|Press+Start+2P|Share+Tech+Mono|Lobster+Two|Amatic+SC|Loved+by+the+King|Patrick+Hand+SC");
+body {
+  margin: 0;
+  padding: 0; }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0; }
+
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  list-style-type: none;
+  text-decoration: none; }
+
+#menu {
+  width: 1300px;
+  margin: 30px auto; }
+  #menu button {
+    transition: box-shadow 0.2s ease;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    background: whitesmoke;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 2px 0 gray;
+    width: 100px;
+    height: 60px;
+    text-align: center;
+    font-size: 30px; }
+    #menu button:focus {
+      outline: none; }
+    #menu button:hover {
+      box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3); }
+    #menu button:active {
+      box-shadow: inset 2px 2px 0 1px rgba(0, 0, 0, 0.3); }
+    #menu button:last-child {
+      float: right; }
+  #menu #size {
+    font-family: 'Fjalla One', sans-serif; }
+
+#stepSequencer {
+  padding: 10px;
+  cursor: default;
+  background: gray;
+  width: 1300px;
+  height: 660px;
+  margin: 0 auto;
+  box-shadow: 0 2px 2px 0 black, 0 0 0 1px black;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px; }
+
+#matrix {
+  background: white;
+  box-shadow: 0 0 0 0 black, 0 0 0 1px black; }
+
+.fila {
+  height: 80px; }
+
+.square {
+  display: inline-block;
+  transition: border-radius 0.7s;
+  background: white;
+  margin: 10px;
+  width: 60px;
+  height: 60px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 2px 0 gray;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px; }
+  .square:hover {
+    border: 2px solid orange; }
+
+.square-active {
+  background: orange;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%; }
+
+.colorOn {
+  background-color: rgba(255, 165, 0, 0.6); }
+
+#stop {
+  display: none; }

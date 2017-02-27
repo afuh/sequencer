@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Step</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet prefetch">
+  <link href="styles/main.css" type="text/css" rel="stylesheet">
+
+  <script src="js/jquery-3.1.1.min.js"></script>
+  <script src="js/jquery-ui.min.js"></script>
+  <script src="js/context.js"></script>
+  <script src="js/notes.js"></script>
+  <script src="js/impulse.js"></script>
+  <script src="js/synth.js"></script>
+  <script src="js/main.js"></script>
+</head>
+
+<body>
+
+  <div id="sequencer">
+    <div id="menu">
+      <button onclick="controls.play()" id="play"><i class="fa fa-play"></i></button>
+      <button onclick="controls.stop()" id="stop"><i class="fa fa-stop"></i></button>
+      <button id="reset" onclick="resetAll()"><i class="fa fa-times"></i></button>
+    </div>
+
+      <div id="stepSequencer">
+        <div id="matrix">
+          <div class="fila f1"></div>
+          <div class="fila f2"></div>
+          <div class="fila f3"></div>
+          <div class="fila f4"></div>
+          <div class="fila f5"></div>
+          <div class="fila f6"></div>
+          <div class="fila f7"></div>
+          <div class="fila f8"></div>
+        </div>
+      </div>
+  </div>
+</body>
+</html>

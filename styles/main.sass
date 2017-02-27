@@ -1,0 +1,65 @@
+@import _variables
+
+#menu
+  width: 1300px
+  margin: 30px auto
+  button
+    transition: box-shadow 0.2s ease
+    +border-radius(5px)
+    background: whitesmoke
+    border: 1px solid rgba(black, .2)
+    box-shadow: 0 1px 2px 0 gray
+    width: 100px
+    height: 60px
+    text-align: center
+    font-size: 30px
+    &:focus
+      outline: none
+    &:hover
+      box-shadow:  0 2px 2px 1px rgba(black, .3)
+    &:active
+      box-shadow:  inset 2px 2px 0 1px rgba(black, .3)
+    &:last-child
+      float: right
+  #size
+    font-family: 'Fjalla One', sans-serif
+
+#stepSequencer
+  padding: 10px
+  cursor: default
+  background: gray
+  width: 1300px
+  height: 660px
+  margin: 0 auto
+  box-shadow: 0 2px 2px 0 black, 0 0 0 1px black
+  +border-radius(5px)
+
+#matrix
+  background: white
+  box-shadow: 0 0 0 0 black, 0 0 0 1px black
+
+.fila
+  height: 80px
+
+.square
+  display: inline-block
+  transition: border-radius 0.7s
+  background: white
+  margin: 10px
+  width: 60px
+  height: 60px
+  border: 1px solid rgba(black, .2)
+  box-shadow: 0 1px 2px 0 gray
+  +border-radius(5px)
+  &:hover
+    border: 2px solid rgba(orange, 1)
+
+.square-active
+  background: orange
+  +border-radius(100%)
+
+.colorOn
+  background-color: rgba(orange, .6)
+
+#stop
+  display: none

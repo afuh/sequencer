@@ -2,18 +2,18 @@
 
 $orange: rgb(255, 181, 0)
 
+#stop
+  display: none
+
 #menu
   display: flex
   flex-flow: row wrap
-  justify-content: flex-start
+  justify-content: center
   width: 1070px
-  margin: 5px auto
+  margin: 10px auto
   div
-    transition: box-shadow 0.2s ease
-    //+border-radius(5px)
-    //background: white
-    //border: 1px solid rgba(black, .2)
-    //box-shadow: 0 1px 2px 0 gray
+    padding-top: 5px
+    transition: text-shadow 0.2s ease
     width: 50px
     height: 30px
     text-align: center
@@ -21,9 +21,7 @@ $orange: rgb(255, 181, 0)
     &:focus
       outline: none
     &:hover
-      box-shadow:  0 2px 2px 1px rgba(black, .3)
-    &:active
-      box-shadow:  inset 2px 2px 0 1px rgba(black, .3)
+      text-shadow:  1px 1px 2px black
 
 #stepSequencer
   padding: 10px
@@ -31,7 +29,10 @@ $orange: rgb(255, 181, 0)
   background: gray
   width: 1070px
   height: 680px
-  margin: 0 auto
+  margin:
+    top: 50px
+    left: auto
+    right: auto
   box-shadow: 0 2px 2px 0 black, 0 0 0 1px black
   +border-radius(5px)
 
@@ -62,6 +63,3 @@ $orange: rgb(255, 181, 0)
 
 .colorOn
   background-color: rgba($orange, .5)
-
-#stop
-  display: none

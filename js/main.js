@@ -17,7 +17,7 @@ var resetAll = function() {
 // Create and populate the matrix
 var stepInit = function() {
   for (var i = columns; i > 0; i--) {
-    $(".f0, .f1, .f2, .f3, .f4, .f5, .f6, .f7, .f8, .f9").prepend("<div class=\"square seq\">"  +  "</div>");
+    $(".f0, .f1, .f2, .f3, .f4, .f5, .f6, .f7, .f8, .f9").prepend("<div class=\"square\">"  +  "</div>");
   }
 };
 
@@ -46,7 +46,7 @@ var controls = (function(){
     $("#stop").show();
 
     function col(n) {
-      var loc =  " div:nth-child(" + columns + "n+0" + n + ")";
+      var loc =  " div:nth-child(" + columns + "n+" + n + ")";
 
       //column style
       $(".fila" + loc).addClass("colorOn")

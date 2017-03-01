@@ -2,12 +2,13 @@
 <html>
 
 <head>
-  <title>Step</title>
+  <title>Simple step sequencer</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet prefetch">
   <link href="styles/main.css" type="text/css" rel="stylesheet">
+  <link rel="shortcut icon" href="styles/icon-play.png">
 
   <script src="js/jquery-3.1.1.min.js"></script>
   <script src="js/context.js"></script>
@@ -20,12 +21,6 @@
 <body>
 
   <div id="sequencer">
-    <div id="menu">
-      <div onclick="controls.play()" id="play"><i class="fa fa-play"></i></div>
-      <div onclick="controls.stop()" id="stop"><i class="fa fa-stop"></i></div>
-      <div id="reset" onclick="resetAll()"><i class="fa fa-times"></i></div>
-    </div>
-
       <div id="stepSequencer">
         <div id="matrix">
           <div class="fila f0"></div>
@@ -39,6 +34,11 @@
           <div class="fila f8"></div>
           <div class="fila f9"></div>
         </div>
+      </div>
+      <div id="menu">
+        <div onclick="controls.play()" id="play"><i class="fa fa-play"></i></div>
+        <div onclick="controls.stop()" id="stop"><i class="fa fa-stop"></i></div>
+        <div id="reset" onclick="resetAll()"><i class="fa fa-times"></i></div>
       </div>
   </div>
 </body>

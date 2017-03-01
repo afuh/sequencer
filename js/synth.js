@@ -4,7 +4,7 @@ var reverb = context.createConvolver();
 var reverbGain = context.createGain();
 var comp = context.createDynamicsCompressor();
 
-filter.frequency.value = 10000;
+filter.frequency.value = 8000;
 
 comp.threshold.value = -40;
 comp.knee.value = 7;
@@ -34,7 +34,7 @@ function Voice(freq) {
     this.vol.gain.cancelScheduledValues(context.currentTime); //cancela el vol anterior
     this.vol.gain.setValueAtTime(this.vol.gain.value, context.currentTime); //establece el vol
     this.vol.gain.linearRampToValueAtTime(1.0, context.currentTime + 0.01); //Attack
-    this.vol.gain.linearRampToValueAtTime(0, context.currentTime + 0.4); //Release
+    this.vol.gain.linearRampToValueAtTime(0, context.currentTime + 0.3); //Release
   };
 
   this.osc.connect(this.vol);
@@ -42,7 +42,7 @@ function Voice(freq) {
 }
 
 //minor penta
-var f0 = new Voice(notes["A#5"]);
+var f0 = new Voice(notes["C6"]);
 var f1 = new Voice(notes["G5"]);
 var f2 = new Voice(notes["F5"]);
 var f3 = new Voice(notes["D#5"]);

@@ -17,14 +17,18 @@ input[type=number]::-webkit-outer-spin-button {
   list-style-type: none;
   text-decoration: none; }
 
+#stop {
+  display: none; }
+
 #menu {
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
+  justify-content: center;
   width: 1070px;
-  margin: 5px auto; }
+  margin: 10px auto; }
   #menu div {
-    transition: box-shadow 0.2s ease;
+    padding-top: 5px;
+    transition: text-shadow 0.2s ease;
     width: 50px;
     height: 30px;
     text-align: center;
@@ -32,9 +36,7 @@ input[type=number]::-webkit-outer-spin-button {
     #menu div:focus {
       outline: none; }
     #menu div:hover {
-      box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3); }
-    #menu div:active {
-      box-shadow: inset 2px 2px 0 1px rgba(0, 0, 0, 0.3); }
+      text-shadow: 1px 1px 2px black; }
 
 #stepSequencer {
   padding: 10px;
@@ -42,7 +44,9 @@ input[type=number]::-webkit-outer-spin-button {
   background: gray;
   width: 1070px;
   height: 680px;
-  margin: 0 auto;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
   box-shadow: 0 2px 2px 0 black, 0 0 0 1px black;
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -82,6 +86,3 @@ input[type=number]::-webkit-outer-spin-button {
 
 .colorOn {
   background-color: rgba(255, 181, 0, 0.5); }
-
-#stop {
-  display: none; }

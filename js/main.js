@@ -17,7 +17,7 @@ var resetAll = function() {
 // Create and populate the matrix
 var stepInit = function() {
   for (var i = columns; i > 0; i--) {
-    $(".f1, .f2, .f3, .f4, .f5, .f6, .f7, .f8").prepend("<div class=\"square seq n" + i + "\">"  +  "</div>");
+    $(".f0, .f1, .f2, .f3, .f4, .f5, .f6, .f7, .f8, .f9").prepend("<div class=\"square seq\">"  +  "</div>");
   }
 };
 
@@ -40,6 +40,7 @@ var click = function(){
 var controls = (function(){
   var contr = {};
   var curr = 1;
+
   contr.play = function(){ /// PLAY ///
     $("#play").hide();
     $("#stop").show();
@@ -56,6 +57,9 @@ var controls = (function(){
             });
 
       //Notes
+      if ($(".f0" + loc).hasClass("square-active")) {
+        f0.play();
+      }
       if ($(".f1" + loc).hasClass("square-active")) {
         f1.play();
       }
@@ -79,6 +83,9 @@ var controls = (function(){
       }
       if ($(".f8" + loc).hasClass("square-active")) {
         f8.play();
+      }
+      if ($(".f9" + loc).hasClass("square-active")) {
+        f9.play();
       }
     }
 

@@ -21,13 +21,14 @@
 
   <div id="sequencer">
     <div id="menu">
-      <button onclick="controls.play()" id="play"><i class="fa fa-play"></i></button>
-      <button onclick="controls.stop()" id="stop"><i class="fa fa-stop"></i></button>
-      <button id="reset" onclick="resetAll()"><i class="fa fa-times"></i></button>
+      <div onclick="controls.play()" id="play"><i class="fa fa-play"></i></div>
+      <div onclick="controls.stop()" id="stop"><i class="fa fa-stop"></i></div>
+      <div id="reset" onclick="resetAll()"><i class="fa fa-times"></i></div>
     </div>
 
       <div id="stepSequencer">
         <div id="matrix">
+          <div class="fila f0"></div>
           <div class="fila f1"></div>
           <div class="fila f2"></div>
           <div class="fila f3"></div>
@@ -36,6 +37,7 @@
           <div class="fila f6"></div>
           <div class="fila f7"></div>
           <div class="fila f8"></div>
+          <div class="fila f9"></div>
         </div>
       </div>
   </div>

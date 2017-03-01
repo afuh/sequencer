@@ -18,38 +18,30 @@ input[type=number]::-webkit-outer-spin-button {
   text-decoration: none; }
 
 #menu {
-  width: 1300px;
-  margin: 30px auto; }
-  #menu button {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  width: 1070px;
+  margin: 5px auto; }
+  #menu div {
     transition: box-shadow 0.2s ease;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    background: whitesmoke;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    box-shadow: 0 1px 2px 0 gray;
-    width: 100px;
-    height: 60px;
+    width: 50px;
+    height: 30px;
     text-align: center;
-    font-size: 30px; }
-    #menu button:focus {
+    font-size: 20px; }
+    #menu div:focus {
       outline: none; }
-    #menu button:hover {
+    #menu div:hover {
       box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3); }
-    #menu button:active {
+    #menu div:active {
       box-shadow: inset 2px 2px 0 1px rgba(0, 0, 0, 0.3); }
-    #menu button:last-child {
-      float: right; }
-  #menu #size {
-    font-family: 'Fjalla One', sans-serif; }
 
 #stepSequencer {
   padding: 10px;
   cursor: default;
   background: gray;
-  width: 1300px;
-  height: 660px;
+  width: 1070px;
+  height: 680px;
   margin: 0 auto;
   box-shadow: 0 2px 2px 0 black, 0 0 0 1px black;
   border-radius: 5px;
@@ -58,19 +50,20 @@ input[type=number]::-webkit-outer-spin-button {
   -ms-border-radius: 5px; }
 
 #matrix {
-  background: white;
+  padding: 5px;
+  background: whitesmoke;
   box-shadow: 0 0 0 0 black, 0 0 0 1px black; }
 
 .fila {
-  height: 80px; }
+  height: 65px; }
 
 .square {
   display: inline-block;
   transition: border-radius 0.7s;
   background: white;
-  margin: 10px;
-  width: 60px;
-  height: 60px;
+  margin: 5px;
+  width: 55px;
+  height: 55px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 2px 0 gray;
   border-radius: 5px;
@@ -78,17 +71,17 @@ input[type=number]::-webkit-outer-spin-button {
   -moz-border-radius: 5px;
   -ms-border-radius: 5px; }
   .square:hover {
-    border: 2px solid orange; }
+    border: 2px solid #ffb500; }
 
 .square-active {
-  background: orange;
+  background: #ffb500;
   border-radius: 100%;
   -webkit-border-radius: 100%;
   -moz-border-radius: 100%;
   -ms-border-radius: 100%; }
 
 .colorOn {
-  background-color: rgba(255, 165, 0, 0.6); }
+  background-color: rgba(255, 181, 0, 0.5); }
 
 #stop {
   display: none; }

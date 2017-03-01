@@ -5,7 +5,6 @@ var reverbGain = context.createGain();
 var comp = context.createDynamicsCompressor();
 
 filter.frequency.value = 10000;
-//filter.Q.value = 7;
 
 comp.threshold.value = -40;
 comp.knee.value = 7;
@@ -43,14 +42,16 @@ function Voice(freq) {
 }
 
 //minor penta
-var f1 = new Voice(notes["F5"]);
-var f2 = new Voice(notes["D#5"]);
-var f3 = new Voice(notes["C5"]);
-var f4 = new Voice(notes["A#4"]);
-var f5 = new Voice(notes["G4"]);
-var f6 = new Voice(notes["F4"]);
-var f7 = new Voice(notes["D#4"]);
-var f8 = new Voice(notes["C3"]);
+var f0 = new Voice(notes["A#5"]);
+var f1 = new Voice(notes["G5"]);
+var f2 = new Voice(notes["F5"]);
+var f3 = new Voice(notes["D#5"]);
+var f4 = new Voice(notes["C5"]);
+var f5 = new Voice(notes["A#4"]);
+var f6 = new Voice(notes["G4"]);
+var f7 = new Voice(notes["F4"]);
+var f8 = new Voice(notes["D#4"]);
+var f9 = new Voice(notes["C3"]);
 
 /*
 //Major penta

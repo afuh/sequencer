@@ -1,2 +1,2 @@
-const AudioContext = window.AudioContext || window.webkitAudioContext;
-const context = new AudioContext();
+var AudioContext = window.AudioContext || window.webkitAudioContext;
+var context = new AudioContext();

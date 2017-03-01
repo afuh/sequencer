@@ -1,9 +1,9 @@
-let soundSource, reverbBuffer;
+var soundSource, reverbBuffer;
 
-let getData = function() {
-  let data = request.response;
+var getData = function() {
+  var data = request.response;
 
-    context.decodeAudioData(data, (buffer) => {
+    context.decodeAudioData(data, function(buffer){
       reverbBuffer = buffer;
       soundSource = context.createBufferSource();
       soundSource.buffer = reverbBuffer;
@@ -15,7 +15,7 @@ let getData = function() {
     });
 };
 
-let request = new XMLHttpRequest();
+var request = new XMLHttpRequest();
 
 request.open("GET", "impulses/Large Long Echo Hall.wav", true);
 request.responseType = "arraybuffer";

@@ -1,8 +1,8 @@
-const master = context.createGain();
-const filter = context.createBiquadFilter();
-const reverb = context.createConvolver();
-const reverbGain = context.createGain();
-const comp = context.createDynamicsCompressor();
+var master = context.createGain();
+var filter = context.createBiquadFilter();
+var reverb = context.createConvolver();
+var reverbGain = context.createGain();
+var comp = context.createDynamicsCompressor();
 
 filter.frequency.value = 10000;
 //filter.Q.value = 7;
@@ -13,8 +13,13 @@ comp.knee.value = 7;
 reverbGain.gain.value = 0.5; // Wet gain
 master.gain.value = 0.7; // Dry Gain
 
-filter.connect(reverb).connect(reverbGain).connect(comp);
-filter.connect(master).connect(comp).connect(context.destination);
+filter.connect(reverb);
+reverb.connect(reverbGain);
+reverbGain.connect(comp);
+
+filter.connect(master);
+master.connect(comp);
+comp.connect(context.destination);
 
 function Voice(freq) {
   this.osc = context.createOscillator();
@@ -33,29 +38,30 @@ function Voice(freq) {
     this.vol.gain.linearRampToValueAtTime(0, context.currentTime + 0.4); //Release
   };
 
-  this.osc.connect(this.vol).connect(filter);
+  this.osc.connect(this.vol);
+  this.vol.connect(filter);
 }
 
 //minor penta
-const f1 = new Voice(notes["F5"]);
-const f2 = new Voice(notes["D#5"]);
-const f3 = new Voice(notes["C5"]);
-const f4 = new Voice(notes["A#4"]);
-const f5 = new Voice(notes["G4"]);
-const f6 = new Voice(notes["F4"]);
-const f7 = new Voice(notes["D#4"]);
-const f8 = new Voice(notes["C3"]);
+var f1 = new Voice(notes["F5"]);
+var f2 = new Voice(notes["D#5"]);
+var f3 = new Voice(notes["C5"]);
+var f4 = new Voice(notes["A#4"]);
+var f5 = new Voice(notes["G4"]);
+var f6 = new Voice(notes["F4"]);
+var f7 = new Voice(notes["D#4"]);
+var f8 = new Voice(notes["C3"]);
 
 /*
 //Major penta
-const f1 = new Voice(notes["E5"]);
-const f2 = new Voice(notes["D5"]);
-const f3 = new Voice(notes["C5"]);
-const f4 = new Voice(notes["A4"]);
-const f5 = new Voice(notes["G4"]);
-const f6 = new Voice(notes["E4"]);
-const f7 = new Voice(notes["D4"]);
-const f8 = new Voice(notes["C3"]);
+var f1 = new Voice(notes["E5"]);
+var f2 = new Voice(notes["D5"]);
+var f3 = new Voice(notes["C5"]);
+var f4 = new Voice(notes["A4"]);
+var f5 = new Voice(notes["G4"]);
+var f6 = new Voice(notes["E4"]);
+var f7 = new Voice(notes["D4"]);
+var f8 = new Voice(notes["C3"]);
 */
 
 //this.adsr = new Float32Array([0.0,0.0,0.0,0.0]);

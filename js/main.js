@@ -56,38 +56,18 @@ var controls = (function(){
               .dequeue();
             });
 
-      //Notes
-      if ($(".f0" + loc).hasClass("square-active")) {
-        f0.play();
+    //Notes
+    const fn = [".f0", ".f1", ".f2", ".f3", ".f4", ".f5", ".f6", ".f7", ".f8", ".f9"];
+
+      const mapa = function(v) {
+        return v.map(function(v, i) {
+          if ($(v + loc).hasClass("square-active")) {
+            note["f" + i].play()
+          }
+        });
       }
-      if ($(".f1" + loc).hasClass("square-active")) {
-        f1.play();
-      }
-      if ($(".f2" + loc).hasClass("square-active")) {
-        f2.play();
-      }
-      if ($(".f3" + loc).hasClass("square-active")) {
-        f3.play();
-      }
-      if ($(".f4" + loc).hasClass("square-active")) {
-        f4.play();
-      }
-      if ($(".f5" + loc).hasClass("square-active")) {
-        f5.play();
-      }
-      if ($(".f6" + loc).hasClass("square-active")) {
-        f6.play();
-      }
-      if ($(".f7" + loc).hasClass("square-active")) {
-        f7.play();
-      }
-      if ($(".f8" + loc).hasClass("square-active")) {
-        f8.play();
-      }
-      if ($(".f9" + loc).hasClass("square-active")) {
-        f9.play();
-      }
-    }
+      mapa(fn);
+    };
 
     init = setInterval(function(){
       if (curr >= 1 && curr <= columns -1) {

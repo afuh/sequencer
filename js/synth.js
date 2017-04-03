@@ -42,27 +42,17 @@ function Voice(freq) {
 }
 
 //minor penta
-var f0 = new Voice(notes["C6"]);
-var f1 = new Voice(notes["G5"]);
-var f2 = new Voice(notes["F5"]);
-var f3 = new Voice(notes["D#5"]);
-var f4 = new Voice(notes["C5"]);
-var f5 = new Voice(notes["A#4"]);
-var f6 = new Voice(notes["G4"]);
-var f7 = new Voice(notes["F4"]);
-var f8 = new Voice(notes["D#4"]);
-var f9 = new Voice(notes["C3"]);
-
-/*
-//Major penta
-var f1 = new Voice(notes["E5"]);
-var f2 = new Voice(notes["D5"]);
-var f3 = new Voice(notes["C5"]);
-var f4 = new Voice(notes["A4"]);
-var f5 = new Voice(notes["G4"]);
-var f6 = new Voice(notes["E4"]);
-var f7 = new Voice(notes["D4"]);
-var f8 = new Voice(notes["C3"]);
-*/
+var note = {
+  "f0": new Voice(n["C6"]),
+  "f1": new Voice(n["G5"]),
+  "f2": new Voice(n["F5"]),
+  "f3": new Voice(n["D#5"]),
+  "f4": new Voice(n["C5"]),
+  "f5": new Voice(n["A#4"]),
+  "f6": new Voice(n["G4"]),
+  "f7": new Voice(n["F4"]),
+  "f8": new Voice(n["D#4"]),
+  "f9": new Voice(n["C3"])
+}
 
 //this.adsr = new Float32Array([0.0,0.0,0.0,0.0]);

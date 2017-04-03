@@ -1,3 +1,6 @@
+var AudioContext = window.AudioContext || window.webkitAudioContext;
+var context = new AudioContext();
+
 var master = context.createGain();
 var filter = context.createBiquadFilter();
 var reverb = context.createConvolver();

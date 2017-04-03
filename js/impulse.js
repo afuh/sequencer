@@ -17,7 +17,7 @@ var getData = function() {
 
 var request = new XMLHttpRequest();
 
-request.open("GET", "impulses/Large Long Echo Hall.wav", true);
+request.open("GET", "assets/Large Long Echo Hall.wav", true);
 request.responseType = "arraybuffer";
 request.addEventListener("load", getData);
 

@@ -1,91 +1,109 @@
-var columns = 16,
-    init,
+const columns = 16,
     bpm = 120,
     ms = 60000/bpm,
     eightN = ms/2;
 
-$(document).ready(function(){
-  stepInit();
-  click();
-});
-
-// resets all
-var resetAll = function() {
-  $(".square").removeClass("square-active");
+//Build sequencer
+const seq = {
+      init: function(config) {
+          seq.el = {};
+          seq.el.doc = $(document);
+          seq.el.parent = seq.el.doc.find("#sequencer");
+          seq.el.matrix = seq.el.parent.find("#matrix");
+          seq.el.reset = seq.el.parent.find("#reset");
+          seq.el.play = seq.el.parent.find("#play");
+          seq.el.stop = seq.el.parent.find("#stop");
+          seq.buildSequencer();
+          seq.bindEvent();
+      },
+      buildSequencer: function() {
+          const row = [".f0", ".f1", ".f2", ".f3", ".f4", ".f5", ".f6", ".f7", ".f8", ".f9"];
+          //build rows
+          for (let i = 9; i >= 0; i--) {
+            seq.el.matrix.prepend("<div class='fila f" + i + "'></div>");
+          }
+          //build columns
+          row.map((x) => {
+            for (let i = columns; i > 0; i--) {
+              $(x).prepend("<div class=\"square\"></div>");
+            }
+          });
+          //add the class ".square" to seq.el after being created
+          seq.el.square = seq.el.parent.find(".square");
+      },
+      bindEvent: function() {
+          seq.el.square.mousedown(seq.paint);
+          seq.el.reset.click(seq.reset);
+          seq.paintDrag();
+      },
+      paint: function() {
+          const item = $(this);
+          item.toggleClass("square-active");
+      },
+      paintDrag: function() {
+          seq.el.doc.mousedown(function(){
+            seq.el.square.bind("mouseover", function(){
+              $(this).toggleClass("square-active");
+              });
+            }).mouseup(function(){
+              seq.el.square.unbind("mouseover");
+            });
+      },
+      reset: function() {
+          seq.el.square.removeClass("square-active");
+      }
 };
 
-// Create and populate the matrix
-var stepInit = function() {
-  for (var i = columns; i > 0; i--) {
-    $(".f0, .f1, .f2, .f3, .f4, .f5, .f6, .f7, .f8, .f9").prepend("<div class=\"square\">"  +  "</div>");
-  }
-};
+$(seq.init);
 
-//paint blocks
-var click = function(){
-  $(".square").mousedown(function(){
-    $(this).toggleClass("square-active");
-  });
-  //bind
-  $(document).mousedown(function(){
-    $(".square").bind("mouseover", function(){
-      $(this).toggleClass("square-active");
-    });
-  }).mouseup(function(){
-    $(".square").unbind("mouseover");
-  });
-};
+//Run the sequencer
+const press = (function(){
+      let count = 1;
+      let init;
+      const button = {};
 
-// Play // Stop
-var controls = (function(){
-  var contr = {};
-  var curr = 1;
+      button.play = function() { /// PLAY ///
+          seq.el.play.hide();
+          seq.el.stop.show();
 
-  contr.play = function(){ /// PLAY ///
-    $("#play").hide();
-    $("#stop").show();
+          const drawColumn = (n) => {
+            const loc = " div:nth-child(" + columns + "n+" + n + ")";
+            const col = seq.el.parent.find(".fila" + loc);
 
-    function col(n) {
-      var loc =  " div:nth-child(" + columns + "n+" + n + ")";
-
-      //column style
-      $(".fila" + loc).addClass("colorOn")
-            .delay(eightN)
-            .queue(function(){
-              $(this).removeClass("colorOn")
+            col.addClass("colorOn").delay(eightN).queue(function(){
+              const item = $(this);
+              item.removeClass("colorOn")
               .dequeue();
             });
+            //When the orange column meet an orange square make sound
+            const fn = [".f0", ".f1", ".f2", ".f3", ".f4", ".f5", ".f6", ".f7", ".f8", ".f9"];
+            const map = (col) => {
+              col.map((col, i) => {
+                if ($(col + loc).hasClass("square-active")) {
+                  note["f" + i].play();
+                }
+              });
+            };
+            map(fn);
+          };
 
-    //Notes
-    const fn = [".f0", ".f1", ".f2", ".f3", ".f4", ".f5", ".f6", ".f7", ".f8", ".f9"];
+          init = setInterval(function(){
+            if (count >= 1 && count <= columns -1) {
+              drawColumn(count);
+              count++;
+            }
+            else {
+              drawColumn(columns);
+              count = 1;
+            }
+          }, eightN); /**** TEMPO ****/
+        };
 
-      const mapa = function(v) {
-        return v.map(function(v, i) {
-          if ($(v + loc).hasClass("square-active")) {
-            note["f" + i].play()
-          }
-        });
-      }
-      mapa(fn);
-    };
+      button.stop = function() { /// STOP ///
+          seq.el.stop.hide();
+          seq.el.play.show();
 
-    init = setInterval(function(){
-      if (curr >= 1 && curr <= columns -1) {
-        col(curr);
-        curr++;
-      }
-      else {
-        col(columns);
-        curr = 1;
-      }
-    }, eightN); /**** TEMPO ****/
-  };
-
-  contr.stop = function() { /// STOP ///
-    $("#stop").hide();
-    $("#play").show();
-
-    clearInterval(init);
-    };
-    return contr;
+          clearInterval(init);
+          };
+          return button;
 })();

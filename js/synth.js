@@ -56,6 +56,4 @@ var note = {
   "f7": new Voice(n["F4"]),
   "f8": new Voice(n["D#4"]),
   "f9": new Voice(n["C3"])
-}
-
-//this.adsr = new Float32Array([0.0,0.0,0.0,0.0]);
+};

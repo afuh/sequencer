@@ -4,7 +4,6 @@ var columns = 16,
     bpm = 120,
     ms = 60000 / bpm,
     eightN = ms / 2;
-
 //Build sequencer
 var seq = {
   init: function init(config) {
@@ -16,8 +15,10 @@ var seq = {
     seq.el.play = seq.el.parent.find("#play");
     seq.el.stop = seq.el.parent.find("#stop");
     seq.el.row = [".r0", ".r1", ".r2", ".r3", ".r4", ".r5", ".r6", ".r7", ".r8", ".r9"];
+
     seq.buildSequencer();
     seq.bindEvent();
+    seq.fadeIn();
   },
   buildSequencer: function buildSequencer() {
     //build rows
@@ -44,15 +45,18 @@ var seq = {
   },
   paintDrag: function paintDrag() {
     seq.el.doc.mousedown(function () {
-      seq.el.square.bind("mouseover", function () {
+      seq.el.matrix.on("mouseover", ".square", function () {
         $(this).toggleClass("square-active");
       });
     }).mouseup(function () {
-      seq.el.square.unbind("mouseover");
+      seq.el.matrix.off("mouseover");
     });
   },
   reset: function reset() {
     seq.el.square.removeClass("square-active");
+  },
+  fadeIn: function fadeIn() {
+    seq.el.parent.fadeIn(600);
   }
 };
 

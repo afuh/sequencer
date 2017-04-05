@@ -46,14 +46,14 @@ function Voice(freq) {
 
 //minor penta
 var note = {
-  "f0": new Voice(n["C6"]),
-  "f1": new Voice(n["G5"]),
-  "f2": new Voice(n["F5"]),
-  "f3": new Voice(n["D#5"]),
-  "f4": new Voice(n["C5"]),
-  "f5": new Voice(n["A#4"]),
-  "f6": new Voice(n["G4"]),
-  "f7": new Voice(n["F4"]),
-  "f8": new Voice(n["D#4"]),
-  "f9": new Voice(n["C3"])
+  "r0": new Voice(n["C6"]),
+  "r1": new Voice(n["G5"]),
+  "r2": new Voice(n["F5"]),
+  "r3": new Voice(n["D#5"]),
+  "r4": new Voice(n["C5"]),
+  "r5": new Voice(n["A#4"]),
+  "r6": new Voice(n["G4"]),
+  "r7": new Voice(n["F4"]),
+  "r8": new Voice(n["D#4"]),
+  "r9": new Voice(n["C3"])
 };

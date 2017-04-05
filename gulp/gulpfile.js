@@ -35,7 +35,7 @@ gulp.task('babel', function () {
     .pipe(babel({
       "presets": ["babel-preset-es2015"].map(require.resolve)
     }))
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(gulp.dest("../"))
     .pipe(browserSync.stream());
 });

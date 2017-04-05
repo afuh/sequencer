@@ -1,1 +1,110 @@
-"use strict";var columns=16,bpm=120,ms=6e4/bpm,eightN=ms/2,seq={init:function(e){seq.el={},seq.el.doc=$(document),seq.el.parent=seq.el.doc.find("#sequencer"),seq.el.matrix=seq.el.parent.find("#matrix"),seq.el.reset=seq.el.parent.find("#reset"),seq.el.play=seq.el.parent.find("#play"),seq.el.stop=seq.el.parent.find("#stop"),seq.buildSequencer(),seq.bindEvent()},buildSequencer:function(){for(var e=[".f0",".f1",".f2",".f3",".f4",".f5",".f6",".f7",".f8",".f9"],s=9;s>=0;s--)seq.el.matrix.prepend("<div class='fila f"+s+"'></div>");e.map(function(e){for(var s=columns;s>0;s--)$(e).prepend('<div class="square"></div>')}),seq.el.square=seq.el.parent.find(".square")},bindEvent:function(){seq.el.square.mousedown(seq.paint),seq.el.reset.click(seq.reset),seq.paintDrag()},paint:function(){$(this).toggleClass("square-active")},paintDrag:function(){seq.el.doc.mousedown(function(){seq.el.square.bind("mouseover",function(){$(this).toggleClass("square-active")})}).mouseup(function(){seq.el.square.unbind("mouseover")})},reset:function(){seq.el.square.removeClass("square-active")}};$(seq.init);var press=function(){var e=1,s=void 0,n={};return n.play=function(){seq.el.play.hide(),seq.el.stop.show();var n=function(e){var s=" div:nth-child("+columns+"n+"+e+")";seq.el.parent.find(".fila"+s).addClass("colorOn").delay(eightN).queue(function(){$(this).removeClass("colorOn").dequeue()});var n=[".f0",".f1",".f2",".f3",".f4",".f5",".f6",".f7",".f8",".f9"];!function(e){e.map(function(e,n){$(e+s).hasClass("square-active")&&note["f"+n].play()})}(n)};s=setInterval(function(){e>=1&&e<=columns-1?(n(e),e++):(n(columns),e=1)},eightN)},n.stop=function(){seq.el.stop.hide(),seq.el.play.show(),clearInterval(s)},n}();
+"use strict";
+
+var columns = 16,
+    bpm = 120,
+    ms = 60000 / bpm,
+    eightN = ms / 2;
+
+//Build sequencer
+var seq = {
+  init: function init(config) {
+    seq.el = {};
+    seq.el.doc = $(document);
+    seq.el.parent = seq.el.doc.find("#sequencer");
+    seq.el.matrix = seq.el.parent.find("#matrix");
+    seq.el.reset = seq.el.parent.find("#reset");
+    seq.el.play = seq.el.parent.find("#play");
+    seq.el.stop = seq.el.parent.find("#stop");
+    seq.el.row = [".r0", ".r1", ".r2", ".r3", ".r4", ".r5", ".r6", ".r7", ".r8", ".r9"];
+    seq.buildSequencer();
+    seq.bindEvent();
+  },
+  buildSequencer: function buildSequencer() {
+    //build rows
+    for (var i = 9; i >= 0; i--) {
+      seq.el.matrix.prepend("<div class='row r" + i + "'></div>");
+    }
+    //build columns
+    seq.el.row.map(function (x) {
+      for (var _i = columns; _i > 0; _i--) {
+        $(x).prepend("<div class=\"square\"></div>");
+      }
+    });
+    //add the class ".square" to seq.el after being created
+    seq.el.square = seq.el.parent.find(".square");
+  },
+  bindEvent: function bindEvent() {
+    seq.el.square.mousedown(seq.paint);
+    seq.el.reset.click(seq.reset);
+    seq.paintDrag();
+  },
+  paint: function paint() {
+    var item = $(this);
+    item.toggleClass("square-active");
+  },
+  paintDrag: function paintDrag() {
+    seq.el.doc.mousedown(function () {
+      seq.el.square.bind("mouseover", function () {
+        $(this).toggleClass("square-active");
+      });
+    }).mouseup(function () {
+      seq.el.square.unbind("mouseover");
+    });
+  },
+  reset: function reset() {
+    seq.el.square.removeClass("square-active");
+  }
+};
+
+$(seq.init);
+
+//Run the sequencer
+var press = function () {
+  var count = 1;
+  var init = void 0;
+  var button = {};
+
+  button.play = function () {
+    /// PLAY ///
+    seq.el.play.hide();
+    seq.el.stop.show();
+
+    var drawColumn = function drawColumn(n) {
+      var loc = " div:nth-child(" + columns + "n+" + n + ")";
+      var col = seq.el.parent.find(".row" + loc);
+
+      col.addClass("colorOn").delay(eightN).queue(function () {
+        var item = $(this);
+        item.removeClass("colorOn").dequeue();
+      });
+      //When the orange column meet an orange square make sound
+      var map = function map(col) {
+        col.map(function (col, i) {
+          if ($(col + loc).hasClass("square-active")) {
+            note["r" + i].play();
+          }
+        });
+      };
+      map(seq.el.row);
+    };
+
+    init = setInterval(function () {
+      if (count >= 1 && count <= columns - 1) {
+        drawColumn(count);
+        count++;
+      } else {
+        drawColumn(columns);
+        count = 1;
+      }
+    }, eightN); /**** TEMPO ****/
+  };
+
+  button.stop = function () {
+    /// STOP ///
+    seq.el.stop.hide();
+    seq.el.play.show();
+
+    clearInterval(init);
+  };
+  return button;
+}();

@@ -13,17 +13,17 @@ const seq = {
           seq.el.reset = seq.el.parent.find("#reset");
           seq.el.play = seq.el.parent.find("#play");
           seq.el.stop = seq.el.parent.find("#stop");
+          seq.el.row = [".r0", ".r1", ".r2", ".r3", ".r4", ".r5", ".r6", ".r7", ".r8", ".r9"];
           seq.buildSequencer();
           seq.bindEvent();
       },
       buildSequencer: function() {
-          const row = [".f0", ".f1", ".f2", ".f3", ".f4", ".f5", ".f6", ".f7", ".f8", ".f9"];
           //build rows
           for (let i = 9; i >= 0; i--) {
-            seq.el.matrix.prepend("<div class='fila f" + i + "'></div>");
+            seq.el.matrix.prepend("<div class='row r" + i + "'></div>");
           }
           //build columns
-          row.map((x) => {
+          seq.el.row.map((x) => {
             for (let i = columns; i > 0; i--) {
               $(x).prepend("<div class=\"square\"></div>");
             }
@@ -68,7 +68,7 @@ const press = (function(){
 
           const drawColumn = (n) => {
             const loc = " div:nth-child(" + columns + "n+" + n + ")";
-            const col = seq.el.parent.find(".fila" + loc);
+            const col = seq.el.parent.find(".row" + loc);
 
             col.addClass("colorOn").delay(eightN).queue(function(){
               const item = $(this);
@@ -76,15 +76,14 @@ const press = (function(){
               .dequeue();
             });
             //When the orange column meet an orange square make sound
-            const fn = [".f0", ".f1", ".f2", ".f3", ".f4", ".f5", ".f6", ".f7", ".f8", ".f9"];
             const map = (col) => {
               col.map((col, i) => {
                 if ($(col + loc).hasClass("square-active")) {
-                  note["f" + i].play();
+                  note["r" + i].play();
                 }
               });
             };
-            map(fn);
+            map(seq.el.row);
           };
 
           init = setInterval(function(){

@@ -1,4 +1,4 @@
-@import _variables
+@import _reset
 
 $orange: rgb(255, 181, 0)
 
@@ -16,7 +16,7 @@ $orange: rgb(255, 181, 0)
   margin: 10px auto
   div
     padding-top: 5px
-    transition: text-shadow 0.2s ease
+    transition: all 0.2s ease
     width: 50px
     height: 30px
     text-align: center
@@ -25,10 +25,11 @@ $orange: rgb(255, 181, 0)
       outline: none
     &:hover
       text-shadow:  1px 1px 2px black
+      transform: scale(1.2)
 
 #sequencer
   display: none
-  
+
 #stepSequencer
   padding: 10px
   cursor: default

@@ -25,7 +25,7 @@ gulp.task('sass', function() {
       outputStyle: 'nested'
     }).on('error', sass.logError))
     .pipe(autoprefixer())
-    .pipe(gulp.dest("../"))
+    .pipe(gulp.dest("../dist"))
     .pipe(browserSync.stream());
 });
 
@@ -36,7 +36,7 @@ gulp.task('babel', function () {
       "presets": ["babel-preset-es2015"].map(require.resolve)
     }))
     // .pipe(uglify())
-    .pipe(gulp.dest("../"))
+    .pipe(gulp.dest("../dist"))
     .pipe(browserSync.stream());
 });
 

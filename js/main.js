@@ -2,7 +2,8 @@ const columns = 16,
     bpm = 120,
     ms = 60000/bpm,
     eightN = ms/2;
-//Build sequencer
+    
+//Build the sequencer
 const seq = {
       init: function(config) {
           seq.el = {};
@@ -33,8 +34,10 @@ const seq = {
           seq.el.square = seq.el.parent.find(".square");
       },
       bindEvent: function() {
-          seq.el.square.mousedown(seq.paint);
+          seq.el.play.click(press.play);
+          seq.el.stop.click(press.stop);
           seq.el.reset.click(seq.reset);
+          seq.el.square.mousedown(seq.paint);
           seq.paintDrag();
       },
       paint: function() {

@@ -4,7 +4,8 @@ var columns = 16,
     bpm = 120,
     ms = 60000 / bpm,
     eightN = ms / 2;
-//Build sequencer
+
+//Build the sequencer
 var seq = {
   init: function init(config) {
     seq.el = {};
@@ -35,8 +36,10 @@ var seq = {
     seq.el.square = seq.el.parent.find(".square");
   },
   bindEvent: function bindEvent() {
-    seq.el.square.mousedown(seq.paint);
+    seq.el.play.click(press.play);
+    seq.el.stop.click(press.stop);
     seq.el.reset.click(seq.reset);
+    seq.el.square.mousedown(seq.paint);
     seq.paintDrag();
   },
   paint: function paint() {

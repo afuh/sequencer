@@ -1,13 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Fjalla+One|Press+Start+2P|Share+Tech+Mono|Lobster+Two|Amatic+SC|Loved+by+the+King|Patrick+Hand+SC");
 body {
   margin: 0;
   padding: 0; }
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-          appearance: none;
-  margin: 0; }
 
 * {
   box-sizing: border-box;
@@ -35,8 +28,8 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 10px auto; }
   #menu div {
     padding-top: 5px;
-    -webkit-transition: text-shadow 0.2s ease;
-    transition: text-shadow 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
     width: 50px;
     height: 30px;
     text-align: center;
@@ -44,7 +37,9 @@ input[type=number]::-webkit-outer-spin-button {
     #menu div:focus {
       outline: none; }
     #menu div:hover {
-      text-shadow: 1px 1px 2px black; }
+      text-shadow: 1px 1px 2px black;
+      -webkit-transform: scale(1.2);
+              transform: scale(1.2); }
 
 #sequencer {
   display: none; }

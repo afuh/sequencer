@@ -34,5 +34,6 @@ Temporary Items
 *.css.map
 
 node_modules
+dist
 
 # End of https://www.gitignore.io/api/osx,sass

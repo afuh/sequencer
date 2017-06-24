@@ -23,11 +23,10 @@ const cssProd = ExtractTextPlugin.extract({
 
 module.exports = {
   entry: './src/main.js',
-  devtool: 'source-map',
+  // devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: 'bundle.js',
-    publicPath: "/"
   },
   module: {
     rules: [
@@ -58,7 +57,7 @@ module.exports = {
       filename: 'index.html'
       }),
     new ExtractTextPlugin({
-      filename: 'style.css',
+      filename: 'main.css',
       disable: !isProd,
       allChunks: true
      }),

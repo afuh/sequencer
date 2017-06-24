@@ -1,11 +1,17 @@
+import 'normalize.css';
+import "./sass/main.sass";
+import $ from 'jquery'
+
+import { note } from './modules/synth'
+
 const columns = 16,
     bpm = 120,
     ms = 60000/bpm,
     eightN = ms/2;
-    
+
 //Build the sequencer
 const seq = {
-      init: function(config) {
+      init() {
           seq.el = {};
           seq.el.doc = $(document);
           seq.el.parent = seq.el.doc.find("#sequencer");
@@ -19,7 +25,7 @@ const seq = {
           seq.bindEvent();
           seq.fadeIn();
       },
-      buildSequencer: function() {
+      buildSequencer() {
           //build rows
           for (let i = 9; i >= 0; i--) {
             seq.el.matrix.prepend("<div class='row r" + i + "'></div>");
@@ -33,18 +39,18 @@ const seq = {
           //add the class ".square" to seq.el after being created
           seq.el.square = seq.el.parent.find(".square");
       },
-      bindEvent: function() {
+      bindEvent() {
           seq.el.play.click(press.play);
           seq.el.stop.click(press.stop);
           seq.el.reset.click(seq.reset);
           seq.el.square.mousedown(seq.paint);
           seq.paintDrag();
       },
-      paint: function() {
+      paint() {
           const item = $(this);
           item.toggleClass("square-active");
       },
-      paintDrag: function() {
+      paintDrag() {
           seq.el.doc.mousedown(function(){
             seq.el.matrix.on("mouseover", ".square", function(){
               $(this).toggleClass("square-active");
@@ -53,10 +59,10 @@ const seq = {
               seq.el.matrix.off("mouseover");
             });
       },
-      reset: function() {
+      reset() {
           seq.el.square.removeClass("square-active");
       },
-      fadeIn: function(){
+      fadeIn(){
         seq.el.parent.fadeIn(600);
       }
 };

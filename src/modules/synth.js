@@ -1,15 +1,16 @@
-var AudioContext = window.AudioContext || window.webkitAudioContext;
-var context = new AudioContext();
+import n from './notes'
+import context from './context'
+import call from './request'
 
-var master = context.createGain();
-var filter = context.createBiquadFilter();
-var reverb = context.createConvolver();
-var reverbGain = context.createGain();
-var comp = context.createDynamicsCompressor();
+const master = context.createGain();
+const filter = context.createBiquadFilter();
+const reverb = context.createConvolver();
+const reverbGain = context.createGain();
+const comp = context.createDynamicsCompressor();
 
-function Voice(freq) {
+class Voice {
+  constructor(freq) {
     this.osc = context.createOscillator(); // Create an oscilator
-
     this.osc.type = "sine"; //Osc. waveshapes: sine, triangle, sawtooth, square
     this.osc.start(context.currentTime);
     this.osc.frequency.value = freq;
@@ -17,16 +18,17 @@ function Voice(freq) {
     this.vol = context.createGain();
     this.vol.gain.value = 0;
 
-    this.play = function() {
-        //Act as an Amp pseudo envelope.
-        this.vol.gain.cancelScheduledValues(context.currentTime);
-        this.vol.gain.setValueAtTime(this.vol.gain.value, context.currentTime);
-        this.vol.gain.linearRampToValueAtTime(1.0, context.currentTime + 0.01); //Attack
-        this.vol.gain.linearRampToValueAtTime(0, context.currentTime + 0.3); //Release
-    };
     this.osc.connect(this.vol).connect(filter);
+  }
+  play() {
+    this.vol.gain.cancelScheduledValues(context.currentTime);
+    this.vol.gain.setValueAtTime(this.vol.gain.value, context.currentTime);
+    this.vol.gain.linearRampToValueAtTime(1.0, context.currentTime + 0.01); //Attack
+    this.vol.gain.linearRampToValueAtTime(0, context.currentTime + 0.3); //Release
+  }
 }
 
+// Routing
 filter.frequency.value = 8000; //Lo pass filter
 
 filter.connect(reverb);
@@ -43,8 +45,21 @@ comp.knee.value = 7;
 reverbGain.gain.value = 0.5; // Wet gain
 master.gain.value = 0.7; // Dry Gain
 
+
+// Reverb Impulse
+call().then(res => {
+  context.decodeAudioData(res.data)
+    .then(buffer => {
+      const source = context.createBufferSource();
+      source.buffer = buffer;
+      reverb.buffer = buffer;
+    })
+  .catch(e =>  "Error with decoding audio data" + e)
+})
+.catch(err => console.log(err))
+
 //minor penta
-var note = {
+export const note = {
   "r0": new Voice(n["C6"]),
   "r1": new Voice(n["G5"]),
   "r2": new Voice(n["F5"]),

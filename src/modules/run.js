@@ -2,6 +2,8 @@ import $ from 'jquery'
 import { row, columns, parent, play, stop, eightN } from './build'
 import { note } from './synth'
 
+let playing = false
+
 //Run the sequencer
 const press = (function(){
       let count = 1;
@@ -50,5 +52,17 @@ const press = (function(){
           };
           return button;
 })();
+
+
+// Space bar stop/play
+$(window).keydown(e => {
+  if (e.keyCode === 32) {
+    playing = !playing
+
+    if (playing) stop.click()
+    else play.click()
+  }
+})
+
 
 export default press

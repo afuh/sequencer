@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const webpack = require('webpack');
-const $ = require("jquery")
 const autoprefixer = require('autoprefixer');
 const path = require("path");
 
@@ -54,7 +53,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       minify: { collapseWhitespace: true },
       template: './src/index.html',
-      filename: 'index.html'
+      filename: 'index.html',
+      favicon: './assets/icon-play.png'
       }),
     new ExtractTextPlugin({
       filename: 'main.css',

@@ -35,5 +35,5 @@ Temporary Items
 
 node_modules
 dist
-
+.eslintrc
 # End of https://www.gitignore.io/api/osx,sass

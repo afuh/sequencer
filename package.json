@@ -4,30 +4,10 @@
   "description": "Simple JS step sequencer",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "webpack-dev-server",
-    "prod": "npm run clean && NODE_ENV=production webpack -p",
-    "clean": "rimraf ./dist/*",
-    "deploy": "npm run prod && gh-pages -d dist"
-  },
-  "eslintConfig": {
-    "parserOptions": {
-      "sourceType": "module",
-      "ecmaVersion": 8,
-      "ecmaFeatures": {
-        "impliedStrict": true,
-        "jsx": false
-      }
-    },
-    "extends": "eslint:recommended",
-    "rules": {
-      "object-shorthand": "warn",
-      "prefer-arrow-callback": "warn"
-    },
-    "env": {
-      "es6": true,
-      "node": true,
-      "jquery": true
-    }
+    "dev": "webpack-dev-server",
+    "build": "NODE_ENV=production webpack -p",
+    "prebuild": "rimraf dist",
+    "deploy": "surge dist https://step-sequencer.surge.sh"
   },
   "babel": {
     "presets": [

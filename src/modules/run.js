@@ -1,6 +1,7 @@
 import $ from 'jquery'
 import { row, columns, parent, play, stop, eightN } from './build'
 import { note } from './synth'
+import context from './context'
 
 let playing = false
 
@@ -11,6 +12,7 @@ const press = (function(){
   const button = {};
 
   button.play = function() { /// PLAY ///
+    context.resume()
     play.hide();
     stop.show();
 

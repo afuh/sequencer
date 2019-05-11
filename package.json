@@ -30,7 +30,6 @@
     "babel-preset-env": "^1.5.2",
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^2.1.2",
-    "github-pages": "^3.0.2",
     "html-webpack-plugin": "^2.28.0",
     "node-sass": "^4.5.3",
     "normalize.css": "^7.0.0",

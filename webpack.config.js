@@ -1,8 +1,9 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
 const path = require("path");
+const autoprefixer = require('autoprefixer');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const postcss = {
   loader: 'postcss-loader',
@@ -11,18 +12,8 @@ const postcss = {
   }
 };
 
-const isProd = process.env.NODE_ENV === "production";
-const cssDev = ['style-loader', 'css-loader', postcss, 'sass-loader'];
-const cssProd = ExtractTextPlugin.extract({
-                fallbackLoader: 'style-loader',
-                loader: ['css-loader', postcss, 'sass-loader'],
-                publicPath: '/dist'
-              });
-
-
 module.exports = {
   entry: './src/main.js',
-  // devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: 'bundle.js',
@@ -31,23 +22,40 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
       },
       {
-        test: /\.(s+(a|c)ss|css)$/,
-        use: isProd ? cssProd : cssDev
-      }
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: process.env.NODE_ENV === 'development',
+              reloadAll: true
+            },
+          },
+          'css-loader',
+          postcss,
+          'sass-loader',
+        ],
+      },
     ]
   },
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
-    compress: true,
-    stats: "errors-only",
-    open: false,
-    overlay: true,
     port: 3000,
-    hot: false,
+    clientLogLevel: "error",
+    stats: "errors-only"
+  },
+  optimization: {
+    minimizer: [
+      new TerserPlugin()
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -56,11 +64,9 @@ module.exports = {
       filename: 'index.html',
       favicon: './assets/icon-play.png'
       }),
-    new ExtractTextPlugin({
-      filename: 'main.css',
-      disable: !isProd,
-      allChunks: true
-     }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css'
+    }),
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery"
